@@ -19,7 +19,7 @@ def consolidate_cart(cart)
     i += 1
   end 
   n=0 
-  scanned_items = []
+
   while n < cart.length do
       if !scanned_items[:item] 
           scanned_items << cart[n]
