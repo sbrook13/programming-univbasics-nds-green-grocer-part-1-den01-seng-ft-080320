@@ -25,7 +25,7 @@ def consolidate_cart(cart)
           scanned_items << cart[n]
       end
       if scanned_items[:item]
-         scanned_items[:count] += 1
+         scanned_items[:count] = scanned_items[:count + 1]
       end
     # subtotal << cart[i][:price]
     n += 1 
