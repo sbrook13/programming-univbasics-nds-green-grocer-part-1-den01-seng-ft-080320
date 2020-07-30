@@ -12,26 +12,25 @@ def find_item_by_name_in_collection(name, collection)
 end
 
 def consolidate_cart(cart)
-  scanned_items = []
+  scanned_total = []
   i = 0
   # subtotal = []
   while i < cart.length do
-    cart[i][:count] = 1 
+    scanned_item = find_item_by_name_in_collection(cart[i][:item], scanned_total)
+    if scanned_item
+      scanned_item[:count] += 1
+    else
+      scanned_item = {
+        :item => cart[i][:item],
+        :price => cart[i][:price],
+        :clearance => cart[i][:clearance],
+        :count => 1
+        }
+        scanned_total << scanned_item
+    end  
     i += 1
   end 
-  n=0 
-  while n < cart.length do
-      if !scanned_items[:item] 
-          scanned_items << cart[n]
-      end
-      if scanned_items[:item]
-         scanned_items[:count] = scanned_items[:count + 1]
-      end
-    # subtotal << cart[i][:price]
-    n += 1 
-  end 
-  return scanned_items
-  # subtotal = subtotal.reduce(:+)
+  scanned_total
 end
 
 
